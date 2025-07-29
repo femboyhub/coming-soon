@@ -470,53 +470,9 @@
         // Create particles periodically
         setInterval(createParticle, 500);
 
-        // Email notification form
-        document.getElementById("notifyForm").addEventListener("submit", function (e) {
-            e.preventDefault();
-
-            const emailInput = document.getElementById("emailInput");
-            const submitBtn = document.getElementById("submitBtn");
-            const formMessage = document.getElementById("formMessage");
-            const email = emailInput.value.trim();
-
-            if (!email) {
-                showMessage("Please enter a valid email address.", "error");
-                return;
-            }
-
-            // Disable button and show loading state
-            submitBtn.disabled = true;
-            submitBtn.textContent = "Submitting...";
-
-            // Simulate form submission (replace with actual API call)
-            setTimeout(() => {
-                // For now, just show success message
-                // In a real implementation, you would send this to your backend
-                showMessage("Thank you! We\"ll notify you when we launch.", "success");
-                emailInput.value = "";
-
-                // Re-enable button
-                submitBtn.disabled = false;
-                submitBtn.textContent = "Notify Me";
-
-                // Store email in localStorage for now (optional)
-                const emails = JSON.parse(localStorage.getItem("notifyEmails") || "[]");
-                if (!emails.includes(email)) {
-                    emails.push(email);
-                    localStorage.setItem("notifyEmails", JSON.stringify(emails));
-                }
-            }, 1500);
-        });
-
-        function showMessage(text, type) {
-            const formMessage = document.getElementById("formMessage");
-            formMessage.textContent = text;
-            formMessage.className = `form-message ${type}`;
-            formMessage.style.display = "block";
-
-            setTimeout(() => {
-                formMessage.style.display = "none";
-            }, 5000);
+        // Initial particle creation
+        for (let i = 0; i < 50; i++) {
+            createParticle();
         }
 
     </script>
